@@ -4,7 +4,7 @@
 }
 
 html,body{
-	overflow: hidden;
+	overflow-x: hidden;
 	position: relative;
 	width: 100%;
 	height: 100%;
@@ -28,7 +28,8 @@ html,body{
 }
 
  .bottom{
-	position: absolute;
+ 	-webkit-backface-visibility: hidden;
+	position: fixed;
 	bottom: 0;
 	width: 100%;
  }
@@ -115,7 +116,7 @@ input:focus{
 	padding: 0;
 	margin: 0;
 	width: 100%;
-	min-height: 100%;
+	height: 100%;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -329,6 +330,13 @@ header > h2{
 	font-size: 115%;
 }
 
+#datosProceso select{
+	width: 100%;
+}
+
+#datosProceso select option{
+	max-width: 100%;
+}
 #tomarFoto{
 	font-size: 100%;
 	letter-spacing: 2px;
@@ -375,7 +383,3 @@ header > h2{
 	color: rgb(37, 166, 217);
 	font-size: 180%;
 }
-
-
-#waitPage{width: 100%;height: 100%;background-color: rgba(21,21,21,0.6);z-index:112;position: absolute;top: 0;left: 0;display: none;}
-#waitPage .img{width:100%;height:100%;background-image:url(../img/ajax-loader.gif) 50% 50%;}

@@ -1,27 +1,27 @@
 var fn = {
 
     actividades: null,
-    numActividades: 3,
+
+    numActividades: data.length,
+
     numActividad: null,
+
 	init: function(){
 
         $("div.page").addClass("inactive");
         $("div.page#principal").removeClass("inactive").addClass("active");
 
 		$("#ingresar").tap(fn.login);
-
         $(".signout").tap(fn.logout);
-
         $("#verNosotros").tap(fn.nosotros);
         
         // Este es la accion para cuando se compile
-        $("#tomarFoto").tap(mc.start);
+        //$("#tomarFoto").tap(mc.start);
 
         //Se sustituye la accion de arriba solo para hacer pruebas
-        //$("#tomarFoto").tap(fn.pruebaFoto);
+        $("#tomarFoto").tap(fn.pruebaFoto);
 
         $("#verificarProceso").tap(fn.verificarProceso);
-
         $("#cancelarProceso").tap(fn.cancelarProceso);
 
 	},
@@ -77,51 +77,107 @@ var fn = {
         var monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
           "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Deciembre"];
 
-        //var mydata = JSON.parse(data);
-        var i;
-        for(i=0;i<5;i++){
-            if(!data[i].resuelto){
+        //Cargar fecha
+        //Esto debe de ser desde el servidor CAMBIAR
+        date = new Date();
+        date = date.getDate()+" - "+monthNames[date.getMonth()]+" - "+date.getFullYear();
+
+        //Colocar Datos
+        $tableData = $("#datosProceso");
+        $tableData.html('');
+
+        for(i = 0; i < data.length ; i++){
+            fn.numActividad = data[i].activityNumber;
+
+            // Checar si esta resuelto o no, eso lo
+            // se cambiara, pues el servidor nos devolvera
+            // la actividad correspondiente
+            if(data[i].solved == false){
+                for(var prop in data[i]){
+                    if (data[i].hasOwnProperty(prop)) {
+                        if(data[i][prop] != ''){  
+                            element = fn.createActivityElement(prop,data[i][prop]);
+                            $tableData.append(element);
+                        }
+                    }
+                }
                 break;
             }
         }
-
-        date        = new Date();
-        fecha       = date.getDate()+" - "+monthNames[date.getMonth()]+" - "+date.getFullYear();
-        fn.numActividad  = data[i].numero;
-        descripcion = data[i].descripcion;
-
-        $("#datosProceso .fecha").text(fecha);
-        $("#datosProceso .descripcion").text(descripcion);
 
         // retornar el numero de proceso
         return fn.numActividad;
     },
 
+    createActivityElement: function(prop,data){
+        element = '<tr><td class="icono">';
+
+        icono     = '';
+        contenido = data;
+
+        // Colocar icono    
+        switch(prop){
+            case "workStation":
+                icono = 'fa fa-industry';
+                break;
+            case 'date':
+                icono = 'fa fa-calendar';
+                break;
+            case 'machine':
+                icono = 'fa fa-gears';
+                break;
+            case 'client':
+                icono = 'fa fa-building-o';
+                break;
+            case 'turn':
+                icono = 'fa fa-clock-o';
+                break;
+            case 'operation':
+                icono = 'fa fa-list-ol';
+                break;
+            case 'type':
+                icono = 'fa fa-circle-thin';
+                break;
+            case 'colors':
+                icono = 'fa fa-info-circle';
+                var divColor = '<select>';
+                for(var color in data){
+                    if(data.hasOwnProperty(color)){
+                        divColor += '<option style="background-color:'+data[color]+';">'+color+'</option>';
+                    }
+                }
+                divColor += '</select>';
+                element += '<i class="'+icono+'"></i></td><td class="'+prop+'">'+divColor+'</td></tr>';
+
+                return element;
+                break;
+            default:
+                icono = 'fa fa-square';
+        }
+
+        element +=  '<i class="'+icono+'"></i></td><td class="'+prop+'">'+data+'</td></tr>';
+
+        return element;
+    },
+
     verificarProceso: function(){
         // Enviar a la BD la foto y la informacion del proceso
-        data[fn.numActividad-1].resuelto = true;
+        data[fn.numActividad-1].solved = true;
 
         // Despues cargar datos del siguiente proceso (si existe)
         // en la pagina proceso y volver a ella.
 
-        fn.cargarDatos();
-
-        if(fn.numActividad != fn.numActividades){
-            fn.cargadorAjax("#proceso",fn.numActividad);
-
-        }else{
+        if(fn.numActividad == fn.numActividades){
             fn.cargadorAjax("#fin");
             setTimeout(function(){
                 fn.cambiarPagina("#principal");
                 location.reload();
             },4500);
+
+        }else{
+            fn.cargarDatos();
+            fn.cargadorAjax("#proceso",fn.numActividad);
         }
-
-
-//------------Estos datos son solo de prueba
-
-        // Sino hay siguiente proceso quiere decir
-        // que termino su dia, mostrar pagina de finalizar dia
     },
 
     cargadorAjax: function(target, activityName){
@@ -140,8 +196,7 @@ var fn = {
 
     cancelarProceso: function(){
 
-        // en caso de cancelacion solo volver a 
-        // la pagina del proceso
+        // en caso de cancelacion solo volver a la pagina del proceso
         fn.cambiarPagina("#proceso");
     },
 
@@ -155,6 +210,6 @@ var fn = {
     }
 }
 
-$(fn.deviceready);
+//$(fn.deviceready);
 
-//fn.init();
+fn.init();

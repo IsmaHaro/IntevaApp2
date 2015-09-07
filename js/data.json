@@ -1,42 +1,42 @@
 data = [
 {
-	"numero": "1",
-	"resuelto": false,
-	"descripcion": "Limpieza general de herramentales, mangueras, mesa de trabajo, contenedores de material etc…"
+	"solved": false,
+	"workStation": "",
+	"procedure": "OP. 50 ATORNILLADO DE FRAME Y ENSAMBLE DE ARNES",
+	"operation": "50",
+	"machine": "",
+	"partNumber": "738",
+	"client": "VW",
+	"cell": "A7",
+	"activityFill": true,
+	"activity": "Atornillado de damper a riel",
+	"activityNumber": 1,
+	"type": "POKA YOKE",
+	"description": "2 tornillos \n 3.5 Nm +/- 0.35",
+	"colors" : {
+		"AK1" : "#C9C9C9",
+		"ZB6" : "#EFEB86",
+		"DM4" : "#000000"
+	}
 },
 {
-	"numero": "2",
-	"resuelto": false,
-	"descripcion": "Verificar que no existan fugas de aire en manqueras, valvulas o pistones."
-},
-{
-	"numero": "3",
-	"resuelto": false,
-	"descripcion": "Verificar que lamparas de luz normal no se encuentren fundidas o parpadeando."
-},
-{
-	"numero": "4",
-	"resuelto": false,
-	"descripcion": "Verificar funcionamiento de sensores bimanuales y tambien que se encuentren apretados y bien posicionados."
-},
-{
-	"numero": "5",
-	"resuelto": false,
-	"descripcion": "Realizar verificación de tapetes, que no se encuentren rotos y que no se encuentren empalmados"
-},
-{
-	"numero": "6",
-	"resuelto": false,
-	"descripcion": "Registrar Presion de presostato 87 +/- 7  PSI"
-},
-{
-	"numero": "7",
-	"resuelto": false,
-	"descripcion": "Revisar correcto funcionamiento de paro de emergencia"
-},
-{
-	"numero": "8",
-	"resuelto": false,
-	"descripcion": "Verificar que clamps se encuentren ajustados y bien posicionados."
+	"solved": false,
+	"workStation": "",
+	"procedure": "OP. 50 ATORNILLADO DE FRAME Y ENSAMBLE DE ARNES",
+	"operation": "50",
+	"machine": "",
+	"partNumber": "738",
+	"client": "VW",
+	"cell": "A7",
+	"activityFill": true,
+	"activity": "Atornillado de rieles, parte trasera a frame",
+	"activityNumber": 2,
+	"type": "POKA YOKE",
+	"description": "14 tornillos \n 3.5 Nm +/- 0.35",
+	"colors" : {
+		"AK1" : "#C9C9C9",
+		"ZB6" : "#EFEB86",
+		"DM4" : "#000000"
+	}
 }
 ];

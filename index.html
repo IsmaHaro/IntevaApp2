@@ -3,9 +3,9 @@
     <head>
         <meta charset="utf-8">
         <title>IntevaApp</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, target-densitydpi=medium-dpi" />
         <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
-        <link rel="stylesheet" type="text/css" href="css/estilos.min.css">
+        <link rel="stylesheet" type="text/css" href="css/estilos.css">
     </head>
     <body>
         <div class="page" id="principal">
@@ -30,7 +30,7 @@
     
             <div class="tabla">
                 <table id="datosProceso" cellspacing="0" cellpadding="0">
-                    <tr>
+<!--                     <tr>
                         <td class="icono">
                             <i class="fa fa-user"></i>
                         </td>
@@ -39,33 +39,38 @@
                     <tr>
                         <td class="icono">
                             <i class="fa fa-industry"></i>
-                            <!-- <i class="fa fa-wrench"></i> -->
                         </td>
-                        <td class="estacionTrabajo">Ensamble de Mecanismos</td>
+                        <td class="workStation">Ensamble de Mecanismos</td>
                     </tr>
                     <tr>
                         <td class="icono">
                             <i class="fa fa-calendar"></i>
                         </td>
-                        <td class="fecha">17 - Julio - 2015</td>
+                        <td class="date">17 - Julio - 2015</td>
                     </tr>
                     <tr>
                         <td class="icono">
                             <i class="fa fa-gears"></i>
                         </td>
-                        <td class="numMaquinaria">Quemacocos A7</td>
+                        <td class="machine">Quemacocos A7</td>
                     </tr>
                     <tr>
                         <td class="icono">
                             <i class="fa fa-clock-o"></i>
                         </td>
-                        <td class="turno">Matutino</td>
+                        <td class="turn">Matutino</td>
                     </tr>
                     <tr>
                         <td class="icono">
                             <i class="fa fa-list-ol"></i>
                         </td>
-                        <td class="operacion">20</td>
+                        <td class="operation">20</td>
+                    </tr>
+                    <tr>
+                        <td class="icono">
+                            <i class="fa fa-list-ol"></i>
+                        </td>
+                        <td class="type">20</td>
                     </tr>
                     <tr>
                         <td class="division" colspan="2">
@@ -73,10 +78,10 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="descripcion" colspan="2">
+                        <td class="description" colspan="2">
                             Verificar que no existan fugas de aire en mangueras, valvulas o pistones.
                         </td>
-                    </tr>
+                    </tr> -->
                 </table>
             </div>
 
@@ -129,8 +134,8 @@
         
         <script src="phonegap.js"></script>
         <script src="js/zepto.min.js"></script>
-        <script src="js/API/mediaCapture.min.js"></script>
+        <script src="js/API/mediaCapture.js"></script>
         <script src="js/data.json"></script>
-        <script src="js/app.min.js"></script>
+        <script src="js/app.js"></script>
     </body>
 </html>
