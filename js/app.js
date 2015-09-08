@@ -24,13 +24,9 @@ var fn = {
         $("#verificarProceso").tap(fn.verificarProceso);
         $("#cancelarProceso").tap(fn.cancelarProceso);
 
-        window.addEventListener("touchstart", function(e) {
-            e.preventDefault();
-        }, false);
-
-        window.addEventListener("touchmove", function(e) {
-            e.preventDefault();
-        }, false);
+        //window.addEventListener("touchmove", function(e) {
+        //    e.preventDefault();
+        //}, false);
 
 	},
 
