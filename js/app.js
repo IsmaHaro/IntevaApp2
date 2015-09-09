@@ -171,7 +171,7 @@ var fn = {
                 div = '<div>'+data.name+'</div>';
                 div += '<div>'+data.description+'</div>';
                 if(data.input){
-                    div += '<div class="wrap-input"><input type="text" placeholder="Coloca un valor"></div>'
+                    div += '<div class="wrap-input"><input type="number" placeholder="Coloca un valor"></div>'
                 }
                 element += '<i class="'+icono+'"></i></td><td class="'+prop+'">'+div+'</td></tr>';
 
