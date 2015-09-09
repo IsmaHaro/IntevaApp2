@@ -55,6 +55,7 @@ var fn = {
 
     }, 
 
+
     logout: function(){
         fn.cambiarPagina("#principal");
     }, 
@@ -90,18 +91,25 @@ var fn = {
         $tableData = $("#datosProceso");
         $tableData.html('');
 
-        for(i = 0; i < data.length ; i++){
-            fn.numActividad = data[i].activityNumber;
+        fecha = '<tr><td class="icono"><i class="fa fa-calendar"></i></td><td class="fecha">'+date+'</td></tr>';
+        usuario = '<tr><td class="icono"><i class="fa fa-user"></i></td><td class="fecha">Demo</td></tr>';
+        $tableData.append(usuario);
+        $tableData.append(fecha);
 
-            // Checar si esta resuelto o no, eso lo
+        for(i = 0; i < data.length ; i++){
+            fn.numActividad = data[i].activity.number;
+
+            // Checar si esta resuelto o no, eso
             // se cambiara, pues el servidor nos devolvera
             // la actividad correspondiente
             if(data[i].solved == false){
                 for(var prop in data[i]){
                     if (data[i].hasOwnProperty(prop)) {
                         if(data[i][prop] != ''){  
-                            element = fn.createActivityElement(prop,data[i][prop]);
-                            $tableData.append(element);
+                            if(fn.isInActivityElements(prop) >= 0){
+                                element = fn.createActivityElement(prop,data[i][prop]);
+                                $tableData.append(element);
+                            }
                         }
                     }
                 }
@@ -111,6 +119,12 @@ var fn = {
 
         // retornar el numero de proceso
         return fn.numActividad;
+    },
+
+    isInActivityElements: function(prop){
+        listElements = ["workStation", "procedure", "activity", "colors"];
+        res = $.inArray(prop, listElements);
+        return res;
     },
 
     createActivityElement: function(prop,data){
@@ -139,11 +153,8 @@ var fn = {
             case 'operation':
                 icono = 'fa fa-list-ol';
                 break;
-            case 'type':
-                icono = 'fa fa-circle-thin';
-                break;
             case 'colors':
-                icono = 'fa fa-info-circle';
+                icono = 'fa fa-adjust';
                 var divColor = '<select>';
                 for(var color in data){
                     if(data.hasOwnProperty(color)){
@@ -152,6 +163,17 @@ var fn = {
                 }
                 divColor += '</select>';
                 element += '<i class="'+icono+'"></i></td><td class="'+prop+'">'+divColor+'</td></tr>';
+
+                return element;
+                break;
+            case 'activity':
+                icono = 'fa fa-gears';
+                div = '<div>'+data.name+'</div>';
+                div += '<div>'+data.description+'</div>';
+                if(data.input){
+                    div += '<div class="wrap-input"><input type="text" placeholder="Coloca un valor"></div>'
+                }
+                element += '<i class="'+icono+'"></i></td><td class="'+prop+'">'+div+'</td></tr>';
 
                 return element;
                 break;
